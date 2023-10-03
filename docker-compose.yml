@@ -7,8 +7,12 @@ services:
     environment:
       - POSTGRES_USER=${POSTGRES_USER?Postgres user is required}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD?Postgres password is required}
+      - POSTGRES_DB=${DATABASE_NAME?Database name is required}
     networks:
       - database_network
 
 networks:
   database_network:
+
+volumes:
+  dbdata6:

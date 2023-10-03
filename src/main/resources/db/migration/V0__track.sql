@@ -1,0 +1,4 @@
+CREATE TABLE tracks (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL
+)
