@@ -4,20 +4,20 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
+
+import java.util.List;
+
 
 @Data
-@Table(name = "tracks")
-public class Track {
+@Table(value = "artists")
+public class Artist {
     @Id
     private Long id;
     @NonNull
-    private String title;
-
-    @NonNull
-    private Long artistId;
-
-    public Track(String title, Long artistId) {
-        this.title=title;
-        this.artistId = artistId;
-    }
+    private String name;
+    @Nullable
+    private List<String> aliases;
+    @Nullable
+    private List<Long> trackIds;
 }

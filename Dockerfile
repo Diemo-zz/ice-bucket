@@ -1,9 +1,9 @@
-FROM gradle:latest AS build
+FROM gradle:7.2.0-jdk17 AS build
 WORKDIR /app
 COPY . .
-RUN gradle build
+RUN ./gradlew build
 
-FROM openjdk:21-jdk as base
+FROM eclipse-temurin:17 as base
 WORKDIR /app
 ENV jarfile=ice.jar
 RUN groupadd -r -g 1000 user && useradd -r -g user -u 1000 user
