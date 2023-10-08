@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.function.Tuples;
 
 import java.util.List;
 
@@ -32,13 +33,22 @@ public class TrackServiceImpl  implements TrackService {
         return new Track("test", new Artist("name"));
     }
 
-    public Flux<Track> getAllTracks() {
-        return Flux.fromIterable(List.of(new Track("test", new Artist("name"))));
+    public Flux<Track> getAllTracks(Long artistId) {
+        var artistMono = artistRepository.getById(artistId);
+        return artistMono.flatMapMany(artist-> trackRepository.getAllByArtistId(artist.getId())
+                .map(e-> Tuples.of(artist, e))
+                .map(tuple -> {
+                    var artistEntity = tuple.getT1();
+                    var trackEntity = tuple.getT2();
+                    return new Track(trackEntity.getId(),
+                            trackEntity.getTitle(),
+                            new Artist(artistEntity.getId(), artistEntity.getName()));
+                }));
     }
 
     public Mono<Track> addTrack(TrackEntity track) {
-        LOGGER.info("ADDED TRACK {}", track);
         return trackRepository.save(track)
+                .doOnNext(e -> LOGGER.info("ADDED TRACK {}", e))
                 .flatMap(this::fromEntity) ;
     }
 

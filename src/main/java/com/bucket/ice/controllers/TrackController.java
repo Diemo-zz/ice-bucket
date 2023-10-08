@@ -22,8 +22,8 @@ public class TrackController {
     private final Logger LOGGER = LoggerFactory.getLogger(TrackController.class);
 
     @GetMapping("/tracks")
-    public Flux<Track> getTracks() {
-        return trackService.getAllTracks();
+    public Flux<Track> getTracks(@RequestParam Long artistId) {
+        return trackService.getAllTracks(artistId);
     }
 
     @PostMapping(value = "/track/add", consumes = MediaType.APPLICATION_JSON_VALUE)

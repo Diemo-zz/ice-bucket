@@ -3,6 +3,7 @@ package com.bucket.ice.controllers;
 import com.bucket.ice.dtos.Artist;
 import com.bucket.ice.dtos.Track;
 import com.bucket.ice.services.artist.ArtistService;
+import com.bucket.ice.services.track.TrackService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,12 @@ public class ArtistController {
     @Autowired
     ArtistService artistService;
 
+    @Autowired
+    TrackService trackService;
+
     @GetMapping("/artist/tracks")
     public Flux<Track> getAllTracks(Artist artist) {
-        return Flux.empty();
+        return trackService.getAllTracks(artist.getId());
     }
 
     @GetMapping("/artist/daily")
