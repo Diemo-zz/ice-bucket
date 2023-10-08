@@ -8,9 +8,6 @@ import reactor.core.publisher.Mono;
 
 @Service
 public interface ArtistService {
-    Mono<Artist> getArtist();
-
-    Flux<Track> getTracks(Artist artist);
 
     Mono<Artist> addArtist(Artist artist);
 

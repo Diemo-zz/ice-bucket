@@ -8,10 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -42,5 +39,10 @@ public class ArtistController {
         LOGGER.info("{}", artist);
         return artistService.addArtist(artist);
     }
+
+    //@PostMapping(value="/artist/edit")
+    //public Mono<Artist> editArtistName(@RequestParam Long artistId, @RequestParam String newName) {
+
+    //}
 
 }

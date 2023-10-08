@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.function.Tuples;
 
 import java.time.Instant;
 import java.util.List;
@@ -58,23 +59,24 @@ public class ArtistServiceImpl implements ArtistService{
     }
 
     @Override
-    public Flux<Track> getTracks(Artist artist) {
-        return null;
-    }
-
-    @Override
-    public Mono<Artist> getArtist() {
-        return null;
-    }
-
-    @Override
     public Mono<Artist> getDailyArtist() {
-        return artistRepository.count().map(
+        var artist = artistRepository.count().flatMap(
                 count -> {
                     var time = Instant.now().getEpochSecond()/86400L;
-                    LOGGER.info("{}", time);
-                    return time;
+                    var artistId = time % count;
+                    return artistRepository.getById(artistId + 1 );
                 }
-        ).map(e -> new Artist("test2"));
+        ).cache();
+
+        var artistNames = artist.flatMapMany(
+                artistEntity -> artistNamesRepository.getAllById(artistEntity.getId())
+        ).map(ArtistAlias::getName).collectList();
+
+        return Mono.zip(artist, artistNames)
+                        .map(tuple -> {
+                            var art = tuple.getT1();
+                            var names = tuple.getT2();
+                            return new Artist(art.getId(), art.getName(), names);
+                        });
     }
 }
