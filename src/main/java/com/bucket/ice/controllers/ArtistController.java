@@ -40,9 +40,9 @@ public class ArtistController {
         return artistService.addArtist(artist);
     }
 
-    //@PostMapping(value="/artist/edit")
-    //public Mono<Artist> editArtistName(@RequestParam Long artistId, @RequestParam String newName) {
-
-    //}
+    @PostMapping(value="/artist/edit")
+    public Mono<Artist> editArtistName(@RequestParam Long artistId, @RequestParam String newName) {
+        return artistService.addName(artistId, newName);
+    }
 
 }

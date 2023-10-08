@@ -12,4 +12,6 @@ public interface ArtistService {
     Mono<Artist> addArtist(Artist artist);
 
     Mono<Artist> getDailyArtist();
+
+    Mono<Artist> addName(Long artistId, String newAlias);
 }
