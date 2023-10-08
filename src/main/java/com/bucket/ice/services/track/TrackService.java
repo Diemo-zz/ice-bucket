@@ -1,6 +1,7 @@
 package com.bucket.ice.services.track;
 
 import com.bucket.ice.dtos.Track;
+import com.bucket.ice.entities.TrackEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -9,10 +10,10 @@ import reactor.core.publisher.Mono;
 public interface TrackService {
 
     public Track deleteTrack();
-    public Track updateTrack();
+    Track updateTrack();
 
-    public Flux<Track> getAllTracks();
+    Flux<Track> getAllTracks();
 
-    public Mono<Track> addTrack(Track track);
+    Mono<Track> addTrack(TrackEntity track);
 
 }

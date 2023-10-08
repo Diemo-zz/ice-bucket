@@ -16,4 +16,10 @@ public class Track {
         this.title=title;
         this.artist = artist;
     }
+
+    public Track(Long id, String title, Artist artist) {
+        this.id = id;
+        this.title = title;
+        this.artist = artist;
+    }
 }

@@ -15,4 +15,9 @@ public class TrackEntity {
     private String title;
     @NotNull
     private Long artistId;
+
+    public TrackEntity(String title, Long id) {
+        this.title = title;
+        this.artistId = id;
+    }
 }

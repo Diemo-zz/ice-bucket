@@ -1,7 +1,7 @@
 CREATE TABLE tracks (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
-    artistId BIGINT NOT NULL
+    artist_id BIGINT NOT NULL
 );
 
 CREATE TABLE artists (
