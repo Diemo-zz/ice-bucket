@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
     //    Logger.error("{}", exception.getMessage());
     //    Logger.error("{}", exception.getClass());
     //    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-    //            .body("An unknown exception has occurred exception global");
+    //            .body("An unknown exception has occurred exception");
     //}
 
     @ExceptionHandler({MissingRequestValueException.class})

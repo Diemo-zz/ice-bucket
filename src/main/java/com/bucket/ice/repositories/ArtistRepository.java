@@ -1,9 +1,9 @@
 package com.bucket.ice.repositories;
 
-import com.bucket.ice.dtos.Artist;
+import com.bucket.ice.entities.ArtistEntity;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ArtistRepository extends ReactiveCrudRepository<Artist, Long> {
+public interface ArtistRepository extends ReactiveCrudRepository<ArtistEntity, Long> {
 }

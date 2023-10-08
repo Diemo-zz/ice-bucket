@@ -2,11 +2,9 @@ package com.bucket.ice.dtos;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.lang.NonNull;
 
 @Data
-@Table(name = "tracks")
 public class Track {
     @Id
     private Long id;
@@ -14,10 +12,10 @@ public class Track {
     private String title;
 
     @NonNull
-    private Long artistId;
+    private Artist artist;
 
-    public Track(String title, Long artistId) {
+    public Track(String title, Artist artist) {
         this.title=title;
-        this.artistId = artistId;
+        this.artist = artist;
     }
 }

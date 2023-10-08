@@ -1,5 +1,6 @@
 package com.bucket.ice.services.track;
 
+import com.bucket.ice.dtos.Artist;
 import com.bucket.ice.dtos.Track;
 import com.bucket.ice.repositories.TrackRepository;
 import org.slf4j.Logger;
@@ -19,15 +20,15 @@ public class TrackServiceImpl  implements TrackService {
     TrackRepository trackRepository;
 
     public Track deleteTrack() {
-        return new Track("test", 1L);
+        return new Track("test", new Artist("name"));
     }
 
     public Track updateTrack() {
-        return new Track("test", 1L);
+        return new Track("test", new Artist("name"));
     }
 
     public Flux<Track> getAllTracks() {
-        return Flux.fromIterable(List.of(new Track("test", 1L)));
+        return Flux.fromIterable(List.of(new Track("test", new Artist("name"))));
     }
 
     public Mono<Track> addTrack(Track track) {
